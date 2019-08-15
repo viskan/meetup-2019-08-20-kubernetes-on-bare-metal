@@ -20,3 +20,13 @@ $ git checkout v1.0.4
 ```shell
 $ ansible-playbook --inventory ansible-inventory --ask-pass --ask-become-pass ~/projects/kubernetes-the-right-way/install.yml
 ```
+
+
+## Installing manifests
+
+```
+$ cd manifests
+$ KUBECONFIG=~/.ktrw/k8s-lab/kubeconfig kubectl apply -f flannel
+$ KUBECONFIG=~/.ktrw/k8s-lab/kubeconfig kubectl apply -f nginx-ingress-controller
+$ KUBECONFIG=~/.ktrw/k8s-lab/kubeconfig kubectl apply -f who-am-i
+```
