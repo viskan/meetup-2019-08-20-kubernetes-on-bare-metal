@@ -1,0 +1,59 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: who-am-i
+  namespace: default
+  labels:
+    app.kubernetes.io/name: who-am-i
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: who-am-i
+  template:
+    metadata: 
+      labels:
+        app.kubernetes.io/name: who-am-i
+    spec:
+      containers:
+        - name: who-am-i
+          image: containous/whoami:v1.0.1
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: who-am-i
+  namespace: default
+  labels:
+    app.kubernetes.io/name: who-am-i
+spec:
+  selector:
+    app.kubernetes.io/name: who-am-i
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: who-am-i
+  namespace: default
+  labels:
+    app.kubernetes.io/name: who-am-i
+spec:
+  rules:
+    - host: who-am-i.k8s-lab.viskan.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: who-am-i
+              servicePort: 80
