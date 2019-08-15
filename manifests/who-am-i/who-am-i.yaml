@@ -50,7 +50,7 @@ metadata:
     app.kubernetes.io/name: who-am-i
 spec:
   rules:
-    - host: who-am-i.k8s-lab.viskan.com
+    - host: who-am-i.k8s-lab.ext
       http:
         paths:
           - path: /
