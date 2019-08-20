@@ -19,7 +19,8 @@ $ git checkout v1.0.4
 
 ```shell
 $ cd ~/projects/meetup-2019-08-20-kubernetes-on-bare-metal
-$ ansible-playbook --inventory ansible-inventory --ask-pass --ask-become-pass ~/projects/kubernetes-the-right-way/install.yml
+$ ansible-playbook --inventory ansible-inventory --ask-pass --ask-become-pass \
+     ~/projects/kubernetes-the-right-way/install.yml
 ```
 
 
